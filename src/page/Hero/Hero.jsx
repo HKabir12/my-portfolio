@@ -30,10 +30,10 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Profile Image Section */}
           <div className="relative w-full md:w-1/2 flex justify-center md:justify-start">
-            <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-8 border-green-500 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+            <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden   shadow-2xl transform hover:scale-105 transition-transform duration-300">
               <img
                 src="https://i.ibb.co.com/7xjtSZxj/kabir.jpg"
-                alt="Rashidul Kabir"
+                alt="Humaon Kabir"
                 className="object-cover w-full h-full"
               />
             </div>
@@ -46,7 +46,7 @@ const Hero = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
               Hello, I'm <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-600">
-                Rashidul Kabir
+                Humaon Kabir
               </span>
             </h1>
 
@@ -63,9 +63,9 @@ const Hero = () => {
             {/* Action Buttons and Social Links */}
             <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 pt-4">
               <a
-                href="/resume.pdf"
+                href="/resume.pdf" // Replace with your actual resume link
                 download
-                className="inline-flex items-center space-x-2 px-6 py-3 text-base font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                className="inline-flex items-center space-x-2 px-6 py-3 text-base font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2  focus:ring-opacity-50"
               >
                 <Download size={20} />
                 <span>Download Resume</span>

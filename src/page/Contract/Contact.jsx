@@ -1,15 +1,14 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
+import emailjs from "emailjs-com"; // ✅ Import EmailJS
+import Swal from "sweetalert2";
 
-// The Contact component
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-
-  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,10 +17,34 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can integrate EmailJS, Formspree, or a backend API
-    setStatus("Your message has been sent!");
-    setFormData({ name: "", email: "", message: "" });
-    setTimeout(() => setStatus(""), 3000);
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formData,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          Swal.fire({
+            icon: "success",
+            title: "Message Sent!",
+            text: "✅ Your message has been successfully sent.",
+            confirmButtonColor: "#16a34a", // Tailwind green-600
+          });
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error("FAILED...", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "❌ Failed to send message. Please try again later.",
+            confirmButtonColor: "#dc2626", // Tailwind red-600
+          });
+        }
+      );
   };
   return (
     <section
@@ -40,59 +63,40 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 space-y-6"
           >
-            <div>
-              <label className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Message
-              </label>
-              <textarea
-                name="message"
-                rows="4"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
-                required
-              />
-            </div>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              required
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 bg-white dark:bg-gray-700"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your Email"
+              required
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 bg-white dark:bg-gray-700"
+            />
+            <textarea
+              name="message"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your Message"
+              required
+              className="w-full border border-gray-300 dark:border-gray-700 rounded-md px-4 py-3 bg-white dark:bg-gray-700"
+            />
             <button
               type="submit"
-              className="w-full px-8 py-3 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-all duration-300 shadow-lg transform hover:scale-105"
+              className="w-full px-8 py-3 bg-green-600 text-white rounded-md"
             >
               Send Message
             </button>
-
-            {status && (
-              <p className="text-green-600 dark:text-green-400 mt-4 text-center">
-                {status}
-              </p>
-            )}
+            {status && <p className="text-center mt-4">{status}</p>}
           </form>
 
           {/* Contact Information */}
@@ -109,7 +113,7 @@ const Contact = () => {
                 href="mailto:your.email@example.com"
                 className="text-gray-700 dark:text-gray-300 hover:text-green-500 transition-colors"
               >
-                your.email@example.com
+                humaonkabir2003@gmail.com
               </a>
             </div>
             <div>
@@ -120,7 +124,7 @@ const Contact = () => {
                 href="tel:+1234567890"
                 className="text-gray-700 dark:text-gray-300 hover:text-green-500 transition-colors"
               >
-                +123 456 7890
+                01743637814
               </a>
             </div>
             <div>
@@ -129,7 +133,7 @@ const Contact = () => {
               </h4>
               <div className="flex gap-6">
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/HKabir12"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -138,7 +142,7 @@ const Contact = () => {
                   <Github size={30} />
                 </a>
                 <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://linkedin.com/in/humaonkabir"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -147,7 +151,7 @@ const Contact = () => {
                   <Linkedin size={30} />
                 </a>
                 <a
-                  href="https://twitter.com/yourusername"
+                  href="https://x.com/humaonkabir_12"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Twitter"

@@ -1,139 +1,158 @@
-import {  Link } from "react-router";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router"; // react-router-dom for web apps
 import {
-  Menu,
-  X,
   Code,
   Github,
   Lightbulb,
   User,
   MessageSquare,
-} from "lucide-react"; // Using Lucide React for modern icons
+  Menu,
+  X,
+  Server,
+} from "lucide-react";
+import { FaServicestack } from "react-icons/fa";
+
+const navLinks = [
+  { id: 1, to: "/", icon: <Code size={16} />, text: "Home" },
+  { id: 2, href: "#projects", icon: <Github size={16} />, text: "Projects" },
+  { id: 3, href: "#skills", icon: <Lightbulb size={16} />, text: "Skills" },
+  { id: 4, href: "#about", icon: <User size={16} />, text: "AboutMe" },
+  { id: 5, href: "#contact", icon: <MessageSquare size={16} />, text: "Contact" },
+  { id: 6, href: "#services", icon: < FaServicestack size={16} />, text: "Services" }
+];
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Function to close the mobile menu
+  // Scroll listener to update active section for anchor links
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 3;
+      let currentSection = "";
+      ["projects", "skills", "about", "contact"].forEach((section) => {
+        const el = document.getElementById(section);
+        if (el) {
+          if (
+            el.offsetTop <= scrollPos &&
+            el.offsetTop + el.offsetHeight > scrollPos
+          ) {
+            currentSection = section;
+          }
+        }
+      });
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile menu on link click
   const handleLinkClick = () => {
-    setOpen(false);
+    setMenuOpen(false);
   };
-  const navLinks = [
-    {
-      id: 1,
-      to: "/",
-      icon: <Code size={16} />,
-      text: "Home",
-    },
-    {
-      id: 2,
-      href: "#projects",
-      icon: <Github size={16} />,
-      text: "Projects",
-    },
-    {
-      id: 3,
-      href: "#skills",
-      icon: <Lightbulb size={16} />,
-      text: "Skills",
-    },
-    {
-      id: 4,
-      href: "#about",
-      icon: <User size={16} />,
-      text: "About",
-    },
-    {
-      id: 5,
-      href: "#contact",
-      icon: <MessageSquare size={16} />,
-      text: "Contact",
-    },
-  ];
 
   return (
-    <nav className="bg-gray-800 text-gray-300 shadow-lg font-sans sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+    <nav className="bg-gray-800 text-gray-300 font-sans sticky top-0 z-50 shadow-md">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link
+          <NavLink
             to="/"
+            onClick={handleLinkClick}
             className="text-2xl font-extrabold text-white hover:text-green-400 transition-colors duration-300"
           >
             Kabir
-          </Link>
+          </NavLink>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex space-x-6">
             {navLinks.map((link) =>
               link.to ? (
-                <Link
+                <NavLink
                   key={link.id}
                   to={link.to}
-                  className="flex items-center space-x-2 p-2 hover:text-green-400 transition-colors duration-300 rounded-md"
+                  onClick={handleLinkClick}
+                  className={({ isActive }) =>
+                    `flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
+                      isActive
+                        ? "bg-green-500 text-white"
+                        : "hover:bg-green-500 hover:text-white text-gray-300"
+                    }`
+                  }
                 >
-                  <span className="transform transition-transform duration-300">
-                    {link.icon}
-                  </span>
-                  <span className="font-medium">{link.text}</span>
-                </Link>
+                  {link.icon}
+                  <span>{link.text}</span>
+                </NavLink>
               ) : (
                 <a
                   key={link.id}
                   href={link.href}
-                  className="flex items-center space-x-2 p-2 hover:text-green-400 transition-colors duration-300 rounded-md"
+                  onClick={handleLinkClick}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
+                    activeSection === link.href.substring(1)
+                      ? "bg-green-500 text-white"
+                      : "hover:bg-green-500 hover:text-white text-gray-300"
+                  }`}
                 >
-                  <span className="transform transition-transform duration-300">
-                    {link.icon}
-                  </span>
-                  <span className="font-medium">{link.text}</span>
+                  {link.icon}
+                  <span>{link.text}</span>
                 </a>
               )
             )}
           </div>
 
-          {/* Mobile hamburger button */}
+          {/* Mobile Hamburger Button */}
           <div className="md:hidden">
             <button
-              onClick={() => setOpen(!open)}
-              aria-controls="mobile-menu"
-              aria-expanded={open}
-              className="p-2 text-gray-300 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              className="p-2 rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-400"
             >
-              {open ? (
-                <X size={24} /> // Close icon
-              ) : (
-                <Menu size={24} /> // Hamburger icon
-              )}
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu links */}
+      {/* Mobile Menu */}
       <div
-        id="mobile-menu"
-        className={`${
-          open ? "block" : "hidden"
-        } md:hidden px-4 pb-4 bg-gray-800 transition-all duration-300 ease-in-out`}
+        className={`md:hidden bg-gray-800 transition-max-height duration-300 ease-in-out overflow-hidden ${
+          menuOpen ? "max-h-96" : "max-h-0"
+        }`}
       >
-        <div className="flex flex-col space-y-2 pt-2">
+        <div className="flex flex-col space-y-2 px-4 pb-4">
           {navLinks.map((link) =>
             link.to ? (
-              <Link
+              <NavLink
                 key={link.id}
                 to={link.to}
                 onClick={handleLinkClick}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium hover:text-green-400 hover:bg-gray-700 rounded-md transition-colors"
+                className={({ isActive }) =>
+                  `flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
+                    isActive
+                      ? "bg-green-500 text-white"
+                      : "hover:bg-green-500 hover:text-white text-gray-300"
+                  }`
+                }
               >
                 {link.icon}
                 <span>{link.text}</span>
-              </Link>
+              </NavLink>
             ) : (
               <a
                 key={link.id}
                 href={link.href}
                 onClick={handleLinkClick}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium hover:text-green-400 hover:bg-gray-700 rounded-md transition-colors"
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
+                  activeSection === link.href.substring(1)
+                    ? "bg-green-500 text-white"
+                    : "hover:bg-green-500 hover:text-white text-gray-300"
+                }`}
               >
                 {link.icon}
                 <span>{link.text}</span>
