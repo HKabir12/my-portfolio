@@ -49,7 +49,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-16 bg-gray-50 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-200"
+      className="py-16  dark:text-gray-200"
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-10">
@@ -57,6 +57,10 @@ const Contact = () => {
             Get In Touch
           </span>
         </h2>
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
+          I’m always open to discussing new projects, creative ideas, or
+          opportunities to be part of your vision.
+        </p>
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Form */}
           <form

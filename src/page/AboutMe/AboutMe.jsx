@@ -1,30 +1,46 @@
 import React from "react";
-import { Sparkles, Briefcase, BookOpen , CodeXml , Award, GraduationCap,  } from "lucide-react";
+import {
+  Sparkles,
+  Briefcase,
+  BookOpen,
+  CodeXml,
+  Award,
+  GraduationCap,
+} from "lucide-react";
 
+import { motion } from "framer-motion";
 const AboutMe = () => {
-   const stats = [
+  const stats = [
     {
       id: 1,
-      icon: <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />,
-      value: "1+",
+      icon: (
+        <Briefcase className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />
+      ),
+      value: "2+",
       label: "Years Experience",
     },
     {
       id: 2,
-      icon: <CodeXml className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />,
+      icon: (
+        <CodeXml className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />
+      ),
       value: "20+",
       label: "Projects Completed",
     },
     {
       id: 3,
-      icon: <Award className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />,
+      icon: (
+        <Award className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />
+      ),
       value: "1",
       label: "Certifications",
     },
     {
       id: 4,
-      icon: <GraduationCap className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />,
-      value: "2024",
+      icon: (
+        <GraduationCap className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />
+      ),
+      value: "2022",
       label: "Started Journey",
     },
   ];
@@ -71,10 +87,7 @@ const AboutMe = () => {
   ];
 
   return (
-    <section
-      id="about"
-      className="py-16 sm:py-24 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-200 font-sans"
-    >
+    <section id="about" className="py-16 sm:py-24  font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">About Me</h2>
@@ -83,20 +96,36 @@ const AboutMe = () => {
             experience.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 px-4 max-w-7xl mx-auto">
-          {stats.map(({ id, icon, value, label }) => (
-            <div
-              key={id}
-              className="glass-card text-center group p-6 rounded-lg bg-white/10 backdrop-blur-md shadow-md cursor-default"
-              // Add hover effect for scaling the whole card, optional:
-              // style={{ transition: "transform 0.3s ease" }}
-            >
-              {icon}
-              <h3 className="text-2xl font-bold mb-1 text-gradient">{value}</h3>
-              <p className="text-sm text-muted-foreground">{label}</p>
-            </div>
-          ))}
+        <div className="overflow-hidden py-8">
+          <motion.div
+            className="flex gap-6"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{
+              ease: "linear",
+              duration: 15, // Speed of scroll
+              repeat: Infinity,
+            }}
+          >
+            {[...stats, ...stats].map(({ id, icon, value, label }, index) => (
+              <motion.div
+                key={id + "-" + index}
+                className="glass-card text-center group p-6 rounded-lg bg-white/10 backdrop-blur-md shadow-md cursor-default min-w-[200px]"
+                whileHover={{
+                  scale: 1.05,
+                  y: -5,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                {icon}
+                <h3 className="text-2xl font-bold mb-1 text-gradient">
+                  {value}
+                </h3>
+                <p className="text-sm text-muted-foreground">{label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           {/* Left Column - About Text */}
           <div className="flex flex-col  space-y-6 max-w-xl mx-auto md:mx-0 text-center md:text-left">

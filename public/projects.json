@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "AppOrbit",
+    "image": "https://placehold.co/600x400/E5E7EB/4B5563?text=AppOrbit",
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "Firebase Auth",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "JWT",
+      "Recharts"
+    ],
+    "description": "A full-featured product review platform with authentication, voting, and analytics.",
+    "challenges": "Designing a clean, responsive dashboard UI with real-time analytics (Recharts). Implementing role-based access for group admins and general users. Handling dynamic filtering, sorting, and search logic.",
+    "futurePlans": "Add in-app messaging between group members. Enable event creation with calendar reminders and RSVP. Improve mobile experience with bottom navigation.",
+    "liveLink": "https://apporbit.example.com",
+    "githubClient": "https://github.com/yourusername/apporbit-client",
+    "githubServer": "https://github.com/yourusername/apporbit-server"
+  },
+  {
+    "id": 2,
+    "name": "Friends Forever",
+    "image": "https://placehold.co/600x400/E5E7EB/4B5563?text=Friends+Forever",
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "Firebase Auth",
+      "Cloudinary",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "description": "A social platform to manage and share friend profiles with image uploads and real-time updates.",
+    "challenges": "Managing secure image uploads and real-time synchronization across users.",
+    "futurePlans": "Add friend recommendations, chat feature, and profile analytics.",
+    "liveLink": "https://friendsforever.example.com",
+    "githubClient": "https://github.com/yourusername/friendsforever-client",
+    "githubServer": "https://github.com/yourusername/friendsforever-server"
+  },
+  {
+    "id": 3,
+    "name": "Volunteer Management",
+    "image": "https://placehold.co/600x400/E5E7EB/4B5563?text=Volunteer+Management",
+    "techStack": [
+      "React",
+      "Tailwind CSS",
+      "Firebase Auth",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "description": "An app to manage volunteer opportunities with user authentication and event tracking.",
+    "challenges": "Ensuring accurate tracking of volunteer hours and notifications.",
+    "futurePlans": "Add calendar integration, volunteer rating system, and automated email reminders.",
+    "liveLink": "https://volunteermanagement.example.com",
+    "githubClient": "https://github.com/yourusername/volunteer-management-client",
+    "githubServer": "https://github.com/yourusername/volunteer-management-server"
+  }
+]

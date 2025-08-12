@@ -5,15 +5,17 @@ import Projects from "../Projects/Projects";
 import Contact from "../Contract/Contact";
 import AboutMe from "../AboutMe/AboutMe";
 import Services from "../Services/Services";
+import Experience from "../Experience/Experience";
 
 const Home = () => {
   return (
     <div>
       <Hero></Hero>
-      < AboutMe></AboutMe>
+      <AboutMe></AboutMe>
       <Skills></Skills>
       <Projects></Projects>
-      < Services></Services>
+      < Experience></Experience>
+      <Services></Services>
       <Contact></Contact>
     </div>
   );

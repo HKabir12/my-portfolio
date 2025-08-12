@@ -1,5 +1,6 @@
 import React from "react";
 import { Gauge } from "lucide-react";
+import SkillMarquee from "./SkillMarquee";
 
 const skillCategories = {
   Frontend: [
@@ -26,7 +27,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="bg-white dark:bg-gray-900 py-16 sm:py-24 font-sans text-gray-900 dark:text-gray-200"
+      className="  py-16 sm:py-24 font-sans text-gray-900 dark:text-gray-200"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-16">
@@ -34,6 +35,10 @@ const Skills = () => {
             Skills
           </span>
         </h2>
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
+          I have a diverse skill set in web development, focusing on both frontend and backend technologies.
+        </p>
+        {/* Skills Categories */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {Object.entries(skillCategories).map(([category, skills]) => (
             <div
@@ -65,6 +70,7 @@ const Skills = () => {
             </div>
           ))}
         </div>
+        < SkillMarquee></SkillMarquee>
       </div>
     </section>
   );

@@ -179,7 +179,7 @@ const Services = () => {
                 <div className="relative z-10 p-6">
                   {/* Icon with gradient background */}
                   <div
-                    className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${gradientFrom} ${gradientTo} text-white mb-4`}
+                    className={`flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-r ${gradientFrom} ${gradientTo} text-white mb-4`}
                   >
                     {icon}
                   </div>

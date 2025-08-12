@@ -17,8 +17,18 @@ const navLinks = [
   { id: 2, href: "#projects", icon: <Github size={16} />, text: "Projects" },
   { id: 3, href: "#skills", icon: <Lightbulb size={16} />, text: "Skills" },
   { id: 4, href: "#about", icon: <User size={16} />, text: "AboutMe" },
-  { id: 5, href: "#contact", icon: <MessageSquare size={16} />, text: "Contact" },
-  { id: 6, href: "#services", icon: < FaServicestack size={16} />, text: "Services" }
+  {
+    id: 5,
+    href: "#contact",
+    icon: <MessageSquare size={16} />,
+    text: "Contact",
+  },
+  {
+    id: 6,
+    href: "#services",
+    icon: <FaServicestack size={16} />,
+    text: "Services",
+  },
 ];
 
 const Navbar = () => {
@@ -66,6 +76,8 @@ const Navbar = () => {
             className="text-2xl font-extrabold text-white hover:text-green-400 transition-colors duration-300"
           >
             Kabir
+
+            
           </NavLink>
 
           {/* Desktop Menu */}
