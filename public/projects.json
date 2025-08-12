@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "AppOrbit",
-    "image": "https://placehold.co/600x400/E5E7EB/4B5563?text=AppOrbit",
+    "image": "https://i.ibb.co.com/ch8ZN2yQ/Screenshot-2025-08-12-193008.png",
     "techStack": [
       "React",
       "Tailwind CSS",
@@ -16,14 +16,14 @@
     "description": "A full-featured product review platform with authentication, voting, and analytics.",
     "challenges": "Designing a clean, responsive dashboard UI with real-time analytics (Recharts). Implementing role-based access for group admins and general users. Handling dynamic filtering, sorting, and search logic.",
     "futurePlans": "Add in-app messaging between group members. Enable event creation with calendar reminders and RSVP. Improve mobile experience with bottom navigation.",
-    "liveLink": "https://apporbit.example.com",
-    "githubClient": "https://github.com/yourusername/apporbit-client",
-    "githubServer": "https://github.com/yourusername/apporbit-server"
+    "liveLink": "https://apporbit1.netlify.app/",
+    "githubClient": "https://github.com/HKabir12/apporbit-client-side",
+    "githubServer": "https://github.com/HKabir12/apporbit-server-side.git"
   },
   {
     "id": 2,
     "name": "Friends Forever",
-    "image": "https://placehold.co/600x400/E5E7EB/4B5563?text=Friends+Forever",
+    "image": "https://i.ibb.co.com/CKCcsMdq/Screenshot-2025-08-12-192322.png",
     "techStack": [
       "React",
       "Tailwind CSS",
@@ -36,14 +36,14 @@
     "description": "A social platform to manage and share friend profiles with image uploads and real-time updates.",
     "challenges": "Managing secure image uploads and real-time synchronization across users.",
     "futurePlans": "Add friend recommendations, chat feature, and profile analytics.",
-    "liveLink": "https://friendsforever.example.com",
-    "githubClient": "https://github.com/yourusername/friendsforever-client",
-    "githubServer": "https://github.com/yourusername/friendsforever-server"
+    "liveLink": "https://ssc-2019.netlify.app/",
+    "githubClient": "https://github.com/HKabir12/ssc-19-client-side",
+    "githubServer": "https://github.com/HKabir12/ssc-19-server-side"
   },
   {
     "id": 3,
     "name": "Volunteer Management",
-    "image": "https://placehold.co/600x400/E5E7EB/4B5563?text=Volunteer+Management",
+    "image": "https://i.ibb.co.com/Dfzb0ZbY/Screenshot-2025-08-12-192807.png",
     "techStack": [
       "React",
       "Tailwind CSS",
@@ -55,8 +55,8 @@
     "description": "An app to manage volunteer opportunities with user authentication and event tracking.",
     "challenges": "Ensuring accurate tracking of volunteer hours and notifications.",
     "futurePlans": "Add calendar integration, volunteer rating system, and automated email reminders.",
-    "liveLink": "https://volunteermanagement.example.com",
-    "githubClient": "https://github.com/yourusername/volunteer-management-client",
-    "githubServer": "https://github.com/yourusername/volunteer-management-server"
+    "liveLink": "https://volunteer-management11.netlify.app/",
+    "githubClient": "https://github.com/HKabir12/volunteer-management-system-client-side",
+    "githubServer": "https://github.com/HKabir12/volunteer-management-system-server-side"
   }
 ]
