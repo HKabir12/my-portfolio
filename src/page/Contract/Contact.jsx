@@ -17,7 +17,7 @@ const Contact = () => {
 
   // Load Lottie Animation from public folder
   useEffect(() => {
-    fetch("/public/Modern email.json")
+    fetch("/ModernEmail.json")
       .then((res) => res.json())
       .then((data) => setAnimationData(data))
       .catch((err) => console.error("Error loading Lottie animation:", err));
