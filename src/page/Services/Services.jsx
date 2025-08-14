@@ -141,6 +141,20 @@ const additionalServices = [
   },
 ];
 
+import { motion } from "framer-motion";
+
+
+
+
+const spinVariant = {
+  hidden: { opacity: 0, scale: 0.8, rotate: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 360,
+    transition: { duration: 1.2, ease: "easeInOut" }
+  }
+};
 const Services = () => {
   return (
     <section id="services" className="section-padding  pt-16 ">
@@ -158,17 +172,25 @@ const Services = () => {
         {/* Main services grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {services.map(
-            ({
-              id,
-              icon,
-              title,
-              description,
-              features,
-              gradientFrom,
-              gradientTo,
-            }) => (
-              <div
+            (
+              {
+                id,
+                icon,
+                title,
+                description,
+                features,
+                gradientFrom,
+                gradientTo,
+              },
+              
+            ) => (
+              <motion.div
                 key={id}
+                variants={spinVariant}
+                
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
                 className="glass-card group relative overflow-hidden opacity-100 transform-none"
               >
                 {/* Gradient hover background */}
@@ -191,7 +213,7 @@ const Services = () => {
 
                   <ul className="space-y-2">
                     {features.map((feature, i) => (
-                      <li key={i} className={`flex items-start gap-2 text-sm`}>
+                      <li key={i} className="flex items-start gap-2 text-sm">
                         <div
                           className={`w-1.5 h-1.5 rounded-full ${gradientFrom} ${gradientTo} mt-1.5`}
                         ></div>
@@ -200,11 +222,10 @@ const Services = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             )
           )}
         </div>
-
         {/* Additional services */}
         <div>
           <h3 className="text-2xl font-bold mb-6 text-center">

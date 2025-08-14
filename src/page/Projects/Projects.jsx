@@ -14,7 +14,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="dark:text-gray-200">
+    <section id="projects" className="dark:text-gray-200 pt-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-16">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-600">
