@@ -32,7 +32,7 @@ const AboutMe = () => {
       icon: (
         <Award className="h-8 w-8 mx-auto mb-3 text-primary group-hover:scale-110 transition-transform" />
       ),
-      value: "1",
+      value: "2",
       label: "Certifications",
     },
     {

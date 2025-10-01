@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Gauge } from "lucide-react";
 import SkillMarquee from "./SkillMarquee";
 
@@ -24,10 +24,55 @@ const skillCategories = {
 };
 
 const Skills = () => {
+  const [animatedLevels, setAnimatedLevels] = useState({});
+  const sectionRef = useRef(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          animateLevels();
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
+  const animateLevels = () => {
+    const newLevels = {};
+    Object.entries(skillCategories).forEach(([_, skills]) => {
+      skills.forEach(({ name, level }) => {
+        newLevels[name] = 0;
+        let current = 0;
+        const interval = setInterval(() => {
+          current += 1;
+          if (current >= level) {
+            current = level;
+            clearInterval(interval);
+          }
+          setAnimatedLevels((prev) => ({ ...prev, [name]: current }));
+        }, 20);
+      });
+    });
+  };
+
   return (
     <section
       id="skills"
-      className="  py-16 sm:py-24 font-sans text-gray-900 dark:text-gray-200"
+      ref={sectionRef}
+      className="py-16 sm:py-24 font-sans text-gray-900 dark:text-gray-200"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-16">
@@ -36,8 +81,10 @@ const Skills = () => {
           </span>
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
-          I have a diverse skill set in web development, focusing on both frontend and backend technologies.
+          I have a diverse skill set in web development, focusing on both
+          frontend and backend technologies.
         </p>
+
         {/* Skills Categories */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {Object.entries(skillCategories).map(([category, skills]) => (
@@ -55,13 +102,15 @@ const Skills = () => {
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-lg font-medium">{name}</span>
                       <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">
-                        {level}%
+                        {animatedLevels[name] || 0}%
                       </span>
                     </div>
                     <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5">
                       <div
                         className="h-2.5 bg-green-500 rounded-full transition-all duration-500 ease-out"
-                        style={{ width: `${level}%` }}
+                        style={{
+                          width: `${animatedLevels[name] || 0}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
@@ -70,7 +119,8 @@ const Skills = () => {
             </div>
           ))}
         </div>
-        < SkillMarquee></SkillMarquee>
+
+        <SkillMarquee />
       </div>
     </section>
   );

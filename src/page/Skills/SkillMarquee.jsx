@@ -169,7 +169,7 @@ const skills = [
 
 const SkillMarquee = () => {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden pt-12">
       <motion.div
         className="inline-flex whitespace-nowrap space-x-8 items-center py-4"
         animate={{ x: ["0%", "-50%"] }}

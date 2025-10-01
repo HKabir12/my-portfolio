@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router"; // react-router-dom for web apps
+import { NavLink } from "react-router-dom";
 import {
   Code,
   Github,
@@ -8,26 +8,52 @@ import {
   MessageSquare,
   Menu,
   X,
-  Server,
 } from "lucide-react";
 import { FaServicestack } from "react-icons/fa";
 
 const navLinks = [
-  { id: 1, to: "/", icon: <Code size={16} />, text: "Home" },
-  { id: 2, href: "#projects", icon: <Github size={16} />, text: "Projects" },
-  { id: 3, href: "#skills", icon: <Lightbulb size={16} />, text: "Skills" },
-  { id: 4, href: "#about", icon: <User size={16} />, text: "AboutMe" },
+  {
+    id: 1,
+    href: "#home",
+    icon: <Code size={16} />,
+    text: "Home",
+    type: "anchor",
+  },
+
+  {
+    id: 2,
+    href: "#projects",
+    icon: <Github size={16} />,
+    text: "Projects",
+    type: "anchor",
+  },
+  {
+    id: 3,
+    href: "#skills",
+    icon: <Lightbulb size={16} />,
+    text: "Skills",
+    type: "anchor",
+  },
+  {
+    id: 4,
+    href: "#about",
+    icon: <User size={16} />,
+    text: "AboutMe",
+    type: "anchor",
+  },
   {
     id: 5,
     href: "#contact",
     icon: <MessageSquare size={16} />,
     text: "Contact",
+    type: "anchor",
   },
   {
     id: 6,
     href: "#services",
     icon: <FaServicestack size={16} />,
     text: "Services",
+    type: "anchor",
   },
 ];
 
@@ -35,12 +61,17 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Scroll listener to update active section for anchor links
+  const sectionIds = navLinks
+    .filter((link) => link.type === "anchor")
+    .map((link) => link.href.substring(1));
+
+  // Scroll listener to update active section
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight / 3;
       let currentSection = "";
-      ["projects", "skills", "about", "contact"].forEach((section) => {
+
+      sectionIds.forEach((section) => {
         const el = document.getElementById(section);
         if (el) {
           if (
@@ -51,6 +82,7 @@ const Navbar = () => {
           }
         }
       });
+
       setActiveSection(currentSection);
     };
 
@@ -58,35 +90,47 @@ const Navbar = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [sectionIds]);
 
-  // Close mobile menu on link click
+  // Smooth scroll for anchor links
+  const handleAnchorClick = (e, href) => {
+    e.preventDefault();
+    setMenuOpen(false);
+
+    const targetId = href.substring(1);
+    const targetEl = document.getElementById(targetId);
+
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
 
   return (
-    <nav className=" text-gray-300 font-sans sticky top-0 z-50 shadow-md">
+    <nav className="bg-gray-900 text-gray-300 font-sans sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <NavLink
             to="/"
+            end
             onClick={handleLinkClick}
             className="text-2xl font-extrabold text-white hover:text-green-400 transition-colors duration-300"
           >
-            Kabir
-
-            
+            <i className="">HK</i>
           </NavLink>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
             {navLinks.map((link) =>
-              link.to ? (
+              link.type === "router" ? (
                 <NavLink
                   key={link.id}
                   to={link.to}
+                  end
                   onClick={handleLinkClick}
                   className={({ isActive }) =>
                     `flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
@@ -103,7 +147,7 @@ const Navbar = () => {
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={handleLinkClick}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
                     activeSection === link.href.substring(1)
                       ? "bg-green-500 text-white"
@@ -117,7 +161,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger */}
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -139,10 +183,11 @@ const Navbar = () => {
       >
         <div className="flex flex-col space-y-2 px-4 pb-4">
           {navLinks.map((link) =>
-            link.to ? (
+            link.type === "router" ? (
               <NavLink
                 key={link.id}
                 to={link.to}
+                end
                 onClick={handleLinkClick}
                 className={({ isActive }) =>
                   `flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
@@ -159,7 +204,7 @@ const Navbar = () => {
               <a
                 key={link.id}
                 href={link.href}
-                onClick={handleLinkClick}
+                onClick={(e) => handleAnchorClick(e, link.href)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors duration-300 ${
                   activeSection === link.href.substring(1)
                     ? "bg-green-500 text-white"

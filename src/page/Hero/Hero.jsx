@@ -50,7 +50,7 @@ const Hero = () => {
   }, [index, text]);
 
   return (
-    <section className="  py-16 sm:py-24 font-sans text-gray-900 dark:text-gray-200">
+    <section id="home" className="  py-16 sm:py-24 font-sans text-gray-900 dark:text-gray-200">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Profile Image Section */}
@@ -62,7 +62,7 @@ const Hero = () => {
             <div className="relative group w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:scale-105 hover:shadow-[0_0_60px_rgba(16,185,129,0.6)]">
               {/* Image */}
               <img
-                src="https://i.ibb.co.com/7xjtSZxj/kabir.jpg"
+                src="https://i.ibb.co.com/CKZHz6JY/kabir-resume.jpg"
                 alt="Humaon Kabir"
                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
               />
@@ -103,7 +103,7 @@ const Hero = () => {
               viewport={{ once: true }}
               className="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-400"
             >
-              Frontend & Full Stack Developer
+              Frontend & Backend (Junior Full Stack Developer)
             </motion.p>
 
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto md:mx-0">
