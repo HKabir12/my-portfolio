@@ -183,9 +183,9 @@ const Footer = () => {
       <div className="border-t border-gray-700 py-6">
         <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400 text-center sm:text-left">
-            &copy; {new Date().getFullYear()} Humaon Kabir. Made with{" "}
+            &copy; {new Date().getFullYear()} Humaon Kabir{" "}
             <FaHeart className="inline-block text-red-500" aria-hidden="true" />{" "}
-            using React & Tailwind CSS
+            Jahangirnagar University-IIT. All rights reserved.
           </p>
           <button
             onClick={scrollToTop}
